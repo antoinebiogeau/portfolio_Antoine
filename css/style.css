@@ -1,0 +1,91 @@
+/*reset*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+html{
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+body{
+    font: 1.6rem,sans-serif;
+    font-family: 'Open Sans', 'ans-serif';
+    margin: 0;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+h1,h2,h3,p,figure,ul,ol,section, address{
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+    list-style: none; 
+}
+a, abbr{
+    text-decoration: none;
+}
+h1,h2,h3{
+    font-weight: 700;
+}
+a,button{
+    text-decoration: none;
+    padding: 0;
+    border: 0;
+}
+*{
+    box-sizing: border-box;
+}
+header{
+    text-align: center;
+    background-color: #347B98;
+    font-size: 2.6rem;
+    padding: 1.6rem 0 1.6rem 0;
+}
+header img{
+    max-width: 6rem;
+    vertical-align: bottom;
+    margin: 0 auto;
+}
+main{
+    padding-bottom: 2rem;
+}
+main section{
+    font-size: 2rem;
+    max-width: 100rem;
+    margin: 4rem auto;
+    background-color: #E4F1F6;
+    border-radius: .5rem;
+    box-shadow: .3rem .6rem 1.3rem -.2rem rgba(0,0,0,0.74);
+
+}
+main section h2{
+    font-size: 2rem;
+    margin: 0 auto;
+    background-color: #67AFCB;
+    padding: 1rem 0 1rem .5rem;
+    border-radius: .5rem;
+}
+main section p{
+    padding: 2.6rem 2.6rem 2.6rem 2.6rem;
+}
+main section ul{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+}
+main section ul li{
+    margin: 0 auto;
+}
+main section ul li img{
+    max-width: 100%;
+}
+footer{
+    text-align: center;
+    background-color: #092834;
+    color: #67AFCB;
+    font-size: 1.6rem;
+    padding: 3rem;
+}
+@media screen and (max-width: 70.0rem) {
+    main section ul{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin: 0 auto;
+    }
+}
