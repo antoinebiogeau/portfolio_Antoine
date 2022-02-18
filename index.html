@@ -5,25 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Mon portefolio">
-    <link rel="stylesheet" href="./css/style.css" media="screen">
+    <link rel="stylesheet" href="./css/style2.css" media="screen">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="manifest" href="./assets/site.webmanifest">
     <title>Portfolio</title>
 </head>
 <body>
     <header>
-        
-        <h1><img src="./assets/img_545601.png" alt="icone"> Portfolio Antoine Biogeau</h1>
+        <h1 id="main-title"><span class="material-icons">table_rows</span><img src="./assets/img_545601.png" alt="icone"> Portfolio Antoine Biogeau</h1>
     </header>
+    <nav>
+        <ul>
+            <li><a href="#formation">Formation</a></li>
+            <li><a href="#competances">Competances</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Profil</a></li>
+        </ul>
+    </nav>
     <main>
         <section>
-            <h2>Experience</h2>
-            <p> <abbr title="HyppertexteMakerlanguage">HTML</abbr> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laboriosam, necessitatibus doloremque amet veniam a dicta quo corrupti voluptatum voluptatibus quis sit asperiores expedita aliquid ad voluptas aut totam vitae.</p>
+            <h2 class="history" id="experience">Experience</h2>
+            <p> <abbr title="HyppertexteMakerlanguage">2021 stage dans un studio photo l'atelier 2 l'image
+                2021 stage dans un garage automobile pour la creation de site web.
+            </abbr> </p>
         </section>
         <section>
-            <h2>Compétence</h2>
+            <h2 class="history" id="competances">Compétence</h2>
             <ul>
                 <li><img src="./assets/file_type_css_icon_130661.png" alt=""></li>
                 <li><img src="./assets/file_type_html_icon_130541.png" alt=""></li>
@@ -32,25 +42,28 @@
             </ul>
         </section>
         <section>
-            <h2>Formation</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores nemo nulla eligendi ad excepturi ab tenetur pariatur quas nostrum odit nihil cum, deserunt quasi molestias officiis saepe velit? Officia, doloremque?</p>
+            <h2 class="history" id="formation">Formation</h2>
+            <p>2020-2022 BTS sio a itic paris
+                2017-2020 BAC S Lycee paul constans
+            </p>
         </section>
         <section>
             <h2>Loisirs</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quibusdam nesciunt delectus, nobis perspiciatis tempora odit maiores odio, fugit dolorem libero maxime veritatis optio consequuntur officia modi sequi tenetur. Exercitationem.</p>
+            <p>jeux video, surf, voyage</p>
         </section>
     </main>
     <footer>
-        <address>
+        <h3 class="history" id="contact">Contact</h3>
+        <address itemscope itemtype="https://schema.org/PostalAddress">
             <ul>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li itemprop="email">antoine.biogeau3@gmail.com</li>
+                <li itemprop="telephone">06 31 83 32 15</li>
+                <li itemprop="url">https://github.com/antoinebiogeau</li>
                 <li></li>
             </ul>
         </address>
-        <p>&copy; Antoine Biogeau <time datetime="2021-09-16">2021</time></p>
+        <p itemprop="name">&copy; Antoine Biogeau <time datetime="2021-09-16">2021</time></p>
     </footer>
-
+    <script src="./src/app.js"></script>
 </body>
 </html>

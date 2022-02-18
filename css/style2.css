@@ -31,6 +31,30 @@ a,button{
 *{
     box-sizing: border-box;
 }
+nav ul{
+    padding-top: 2rem;
+    max-width: 80rem;
+    margin: 0 auto 2rem;
+    font-size: 0;
+}
+nav ul li{
+    display: inline-block;
+    line-height: 4.5rem;
+    text-align: center;
+    font-size: 1.6rem;
+    width: calc(100% / 4);
+    
+}
+nav ul li a{
+    display: block;
+    width: 100%;
+    color: #222;
+    transition: all 500ms ease-in-out;
+}
+nav ul li:hover a{
+    background-color: #347B98;
+    color: #fff;
+}
 header{
     text-align: center;
     background-color: #347B98;
@@ -71,9 +95,17 @@ main section ul{
 }
 main section ul li{
     margin: 0 auto;
+    max-width: 90%;
 }
 main section ul li img{
     max-width: 100%;
+    transition-duration: .6s;
+    transform: scale(1);
+}
+main section ul li img:hover{
+    max-width: 100%;
+    transform: scale(1.2);
+    z-index: 3;
 }
 footer{
     text-align: center;
@@ -83,9 +115,21 @@ footer{
     padding: 3rem;
 }
 @media screen and (max-width: 70.0rem) {
-    main section ul{
+    /*main section ul{
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         margin: 0 auto;
+    }*/
+    nav ul li{
+        display: none;
+        grid-template-columns: repeat(1, 1fr);
+        line-height: 4.5rem;
+        text-align: center;
+        font-size: 1.6rem;
+        margin: 0 auto;
+        width: 100%;
+    }
+    .open-menu ul li{
+        display: grid;
     }
 }
