@@ -10,6 +10,7 @@ body{
     margin: 0;
     font-weight: 300;
     text-transform: capitalize;
+    background: #222222;
 }
 h1,h2,h3,p,figure,ul,ol,section, address{
     font-style: normal;
@@ -31,6 +32,11 @@ a,button{
 *{
     box-sizing: border-box;
 }
+nav {
+    padding-top: 1.5rem;
+    position: relative;
+    height: 0rem;
+}
 nav ul{
     padding-top: 2rem;
     max-width: 80rem;
@@ -48,32 +54,37 @@ nav ul li{
 nav ul li a{
     display: block;
     width: 100%;
-    color: #222;
+    color: #fff;
     transition: all 500ms ease-in-out;
 }
 nav ul li:hover a{
-    background-color: #347B98;
+    background-color: #2249A7;
     color: #fff;
 }
 header{
+    width: 100%;
+    height: 100vh;
+    background-color: #222;
     text-align: center;
-    background-color: #347B98;
     font-size: 2.6rem;
-    padding: 1.6rem 0 1.6rem 0;
 }
-header img{
-    max-width: 6rem;
-    vertical-align: bottom;
-    margin: 0 auto;
+header h1{
+    height: 0rem;
+    position: relative;
+    top: 50%;
+    color: #fff;
+    font-size: 5rem;
 }
 main{
+    color: #fff;
     padding-bottom: 2rem;
+    background: #222222;
 }
 main section{
     font-size: 2rem;
     max-width: 100rem;
     margin: 4rem auto;
-    background-color: #E4F1F6;
+    background-color: #333;
     border-radius: .5rem;
     box-shadow: .3rem .6rem 1.3rem -.2rem rgba(0,0,0,0.74);
 
@@ -81,38 +92,51 @@ main section{
 main section h2{
     font-size: 2rem;
     margin: 0 auto;
-    background-color: #67AFCB;
+    background-color: #2249A7;
     padding: 1rem 0 1rem .5rem;
     border-radius: .5rem;
+}
+main section h3{
+    text-align: center;
 }
 main section p{
     padding: 2.6rem 2.6rem 2.6rem 2.6rem;
 }
 main section ul{
+    padding-top: 1rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     margin: 0 auto;
 }
-main section ul li{
-    margin: 0 auto;
-    max-width: 90%;
-}
+
 main section ul li img{
-    max-width: 100%;
+    max-width: 10rem;
     transition-duration: .6s;
     transform: scale(1);
 }
-main section ul li img:hover{
-    max-width: 100%;
-    transform: scale(1.2);
-    z-index: 3;
+main section ul li{
+    margin: 0 auto;
+    text-align: center;
+    padding: 1rem;
+}
+.none{
+    border: solid 0rem;
 }
 footer{
     text-align: center;
-    background-color: #092834;
-    color: #67AFCB;
+    background-color: #222222;
+    color: #fff;
     font-size: 1.6rem;
     padding: 3rem;
+}
+footer a {
+    cursor: pointer;
+    color: #fff;
+    font-style: none;
+    text-decoration: none;
+}
+a:visited{
+    color: #fff;
 }
 @media screen and (max-width: 70.0rem) {
     /*main section ul{
