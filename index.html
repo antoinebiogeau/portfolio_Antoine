@@ -64,9 +64,9 @@
             <ul>
                 <li><fieldset>
                     <legend>Developpeur Web</legend>
-                    <img src="./assets/logo garage.jpg" alt=""> 
+                    <a href=""><img src="" alt=""></a>
                     <p>
-                        <strong>Garage Motrio</strong> <br>
+                        <strong>Nom de l'entreprise :</strong> <br>
                         <strong>2021</strong> <br>
                         <strong>Realistation d'une page publicitaire pour un garage automobile</strong> <br>
                     </p>
@@ -74,7 +74,7 @@
                 <li>
                     <fieldset>
                         <legend>Developpeur Web</legend>
-                        <img src="./assets/logo atelier.png" alt="">
+                        <a href=""><img src="" alt=""></a>
                         <p>
                             <strong>l'atelier 2 l'image</strong> <br>
                             <strong>2021</strong> <br>
@@ -91,14 +91,13 @@
                     <fieldset>
                         <legend>PPE site ligue</legend>
                         <figure>
-                            <img src="./assets/nouveau_ap.png" alt="Star-Lord" id="pub1">
+                            <img src="./assets/Capture d’écran 2022-04-25 205604.png" alt="Star-Lord" id="pub1">
                         </figure>
                         <p>
-                            <strong>Realisation d'une page publicitaire pour la Maison Des Ligues</strong> <br>
-                            <strong>2022</strong> <br>
+                            <strong>description</strong> <br>
+                            <strong>date</strong> <br>
                         </p>
                         <a href="https://github.com/antoinebiogeau/PPE">voir la page</a>
-                        <a href="./PPE_web.html"> voir doc</a>
                     </fieldset>
                 </li>
                 <li>
@@ -108,8 +107,8 @@
                         <img src="./assets/Capture d’écran 2022-04-25 205705.png" alt="Star-Lord" id="pub1">
                     </figure>
                     <p>
-                        <strong>Realisation d'un fake de la page de login d'instagram</strong> <br>
-                        <strong>2022</strong> <br>
+                        <strong>description</strong> <br>
+                        <strong>date</strong> <br>
                     </p>
                     <a href="https://github.com/antoinebiogeau/TP_insta">voir la page</a>
                 </fieldset>
@@ -121,8 +120,8 @@
                             <img src="./assets/Capture d’écran 2022-04-25 205846.png" alt="Star-Lord" id="pub1">
                         </figure>
                         <p>
-                            <strong>Realisation d'un fake de la page de recherche de Google</strong> <br>
-                            <strong>2021</strong> <br>
+                            <strong>description</strong> <br>
+                            <strong>date</strong> <br>
                         </p>
                         <a href="https://github.com/antoinebiogeau/TP_Google">voir la page</a>
                     </fieldset>
@@ -134,11 +133,23 @@
                             <img src="./assets/Capture d’écran 2022-05-02 152145.png" alt="PPE java">
                         </figure>
                         <p>
-                            <strong>Realisation d'une application de gestion des ligues</strong> <br>
-                            <strong>2022</strong> <br>
+                            <strong>description</strong> <br>
+                            <strong>date</strong> <br>
                         </p>
                         <a href="https://github.com/quangquan117/personnel">voir la page</a>
-                        <a href="./PPE_java.html">voir doc</a>
+                    </fieldset>
+                </li>
+                <li>
+                    <fieldset>
+                        <legend>black hole</legend>
+                        <figure>
+                           <canvas class="webgl"></canvas>
+                        </figure>
+                        <p>
+                            <strong>description</strong> <br>
+                            <strong>date</strong> <br>
+                        </p>
+                        <a href="https://github.com/antoinebiogeau/PPE">voir la page</a>
                     </fieldset>
                 </li>
             </ul>
@@ -165,6 +176,12 @@
             <hgit2>Loisirs</h2>
             <p>jeux videos, surf, voyage</p>
         </section>
+        <div>
+            <iframe width="640" height="360" frameborder="0" src="https://mega.nz/embed/kXUXgIwL#ps5O8U07fYn9rcQ4QKXytkWJIRJp1R279IKokN33kMo" allowfullscreen ></iframe>
+<iframe width="640" height="360" frameborder="0" src="https://mega.nz/embed/AH9R2KzQ#qnUox536kWVXi6YBgskt3zGwQc3oyR-wU5HGVwGYP24" allowfullscreen ></iframe>
+<iframe width="640" height="360" frameborder="0" src="https://mega.nz/embed/BHNViDAA#owcJmVVuQEdlc0aRcDjE9BUak1xmX5BTH3ljaRjGgAw" allowfullscreen ></iframe>
+<iframe width="640" height="360" frameborder="0" src="https://mega.nz/embed/pfdCjJaJ#hElgraZsOBD-QKiRcc4TTTMpIVkDHymMri7__U4GW_0" allowfullscreen ></iframe>
+        </div>
     </main>
     <footer>
         <h3 class="history" id="contact">Contact</h3>
@@ -183,5 +200,35 @@
     <script src="./js/particles.js"></script>
     <script src="./js/particles.min.js"></script>
     <script src="./js/app2.js"></script>
-</body>
-</html>
+    <script defer="defer" src="./src/bundle.ae998adcf2c9d035.js"></script>
+    bool operator[](int i) const {
+        return (tab[i/8] & (1 << (i%8))) != 0;
+    }
+
+
+    template <typename T, typename U>
+        std::map<T,U> crossMap(const std::map<T,U>& m1, const std::map<U,T>& m2){
+            std::map<T,U> r;
+            for(auto it = m1.begin(); it != m1.end(); it++){
+                if(m2.find(it->second) != m2.end()) {
+                    r[it->first] = m2.at(it->second);
+                }
+                else{
+                    r[it->first] = m2.find(it->second)->second;
+                }
+            }
+            return r;
+        }
+        template <typename T, typename U>
+            std::map<T,U> crossMap(const std::map<T,U>& m1, const std::map<U,T>& m2){
+              std::map<T,U> r;
+              for(auto it = m1.begin(); it != m1.end(); it++){
+                if(m2.find(it->second) != m2.end()) {
+                  r[it->first] = m2.at(it->second);
+                }
+                else{
+                  r[it->first] = m2.find(it->second)->second;
+                }
+              }
+              return r;
+            }
