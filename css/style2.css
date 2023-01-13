@@ -123,9 +123,17 @@ main section:nth-child(4) ul li img{
     max-width: 40rem;
     max-height: 25rem;
 }
-main section:nth-child(5) img{
+main section:nth-child(5) ul{
+    grid-template-columns: repeat(2, 1fr);
+}
+main section:nth-child(5) ul li{
+    width: 100%;
+}
+main section:nth-child(5) ul li img{
     display: block;
     margin: 0 auto;
+    max-width: 100rem;
+    max-height: 25rem;
 }
 
 
