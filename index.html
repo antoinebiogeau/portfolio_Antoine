@@ -176,12 +176,6 @@
             <hgit2>Loisirs</h2>
             <p>jeux videos, surf, voyage</p>
         </section>
-        <div>
-            <iframe width="640" height="360" frameborder="0" src="https://mega.nz/embed/kXUXgIwL#ps5O8U07fYn9rcQ4QKXytkWJIRJp1R279IKokN33kMo" allowfullscreen ></iframe>
-<iframe width="640" height="360" frameborder="0" src="https://mega.nz/embed/AH9R2KzQ#qnUox536kWVXi6YBgskt3zGwQc3oyR-wU5HGVwGYP24" allowfullscreen ></iframe>
-<iframe width="640" height="360" frameborder="0" src="https://mega.nz/embed/BHNViDAA#owcJmVVuQEdlc0aRcDjE9BUak1xmX5BTH3ljaRjGgAw" allowfullscreen ></iframe>
-<iframe width="640" height="360" frameborder="0" src="https://mega.nz/embed/pfdCjJaJ#hElgraZsOBD-QKiRcc4TTTMpIVkDHymMri7__U4GW_0" allowfullscreen ></iframe>
-        </div>
     </main>
     <footer>
         <h3 class="history" id="contact">Contact</h3>
@@ -201,34 +195,4 @@
     <script src="./js/particles.min.js"></script>
     <script src="./js/app2.js"></script>
     <script defer="defer" src="./src/bundle.ae998adcf2c9d035.js"></script>
-    bool operator[](int i) const {
-        return (tab[i/8] & (1 << (i%8))) != 0;
-    }
-
-
-    template <typename T, typename U>
-        std::map<T,U> crossMap(const std::map<T,U>& m1, const std::map<U,T>& m2){
-            std::map<T,U> r;
-            for(auto it = m1.begin(); it != m1.end(); it++){
-                if(m2.find(it->second) != m2.end()) {
-                    r[it->first] = m2.at(it->second);
-                }
-                else{
-                    r[it->first] = m2.find(it->second)->second;
-                }
-            }
-            return r;
-        }
-        template <typename T, typename U>
-            std::map<T,U> crossMap(const std::map<T,U>& m1, const std::map<U,T>& m2){
-              std::map<T,U> r;
-              for(auto it = m1.begin(); it != m1.end(); it++){
-                if(m2.find(it->second) != m2.end()) {
-                  r[it->first] = m2.at(it->second);
-                }
-                else{
-                  r[it->first] = m2.find(it->second)->second;
-                }
-              }
-              return r;
-            }
+</body>
