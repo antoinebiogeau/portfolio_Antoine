@@ -111,10 +111,6 @@ main section ul{
 main section:nth-child(3) ul{
     grid-template-columns: repeat(2, 1fr);
 }
-main section:nth-child(3) ul li img{
-    max-width: 20rem;
-    height: auto;
-}
 main section:nth-child(4) ul{
     grid-template-columns: repeat(2, 1fr);
 }
@@ -143,6 +139,14 @@ main section ul li{
     text-align: center;
     padding: 1rem;
 }
+.webgl
+{
+    outline: none;
+    max-width: 50rem;
+    max-height: 40rem;
+}
+
+
 .none{
     border: solid 0rem;
 }
