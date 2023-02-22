@@ -460,6 +460,9 @@ a:visited {
 }
 
 @media screen and (max-width: 60rem) {
+    header h1 {
+        top: 15%;
+    }
     main section {
         padding: 1rem;
     }
@@ -474,9 +477,11 @@ a:visited {
         gap: 1rem;
         grid-template-columns: repeat(1, 1fr);
     }
-
+    footer {
+        padding: 1rem;
+    }
     footer address ul {
-        padding: 5rem;
+        padding: 0rem;
         display: grid;
         grid-template-columns: repeat(1, 1fr);
     }
