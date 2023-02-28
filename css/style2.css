@@ -329,12 +329,11 @@ main section:nth-child(5) ul li h3 {
 main section:nth-child(5) ul li img {
     display: block;
     width: 100%;
-    object-fit: contain;
-    max-height: 40rem;
+    object-fit: cover;
+    max-height: 34rem;
     border-radius: 1.25rem;
     margin: 1rem auto;
-
-}
+  }
 
 main section:nth-child(2) ul li img {
     max-width: 10rem;
