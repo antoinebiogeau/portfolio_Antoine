@@ -1,0 +1,210 @@
+{
+    "skills_categories": [
+        {
+            "name": "Software Development",
+            "skills": [
+                {
+                    "name": "C++",
+                    "logo": "../assets/c++.png"
+                },
+                {
+                    "name": "C",
+                    "logo": "../assets/c.png"
+                },
+                {
+                    "name": "Java",
+                    "logo": "../assets/java_original_wordmark_logo_icon_146459.png"
+                },
+                {
+                    "name": "C#",
+                    "logo": "../assets/cs.png"
+                },
+                {
+                    "name": "Python",
+                    "logo": "../assets/1200px-Python-logo-notext.svg.png"
+                },
+                {
+                    "name": "Java FX",
+                    "logo": "../assets/JavaFX.svg"
+                },
+                {
+                    "name": "Cmake",
+                    "logo": "../assets/Cmake.svg.png"
+                },
+                {
+                    "name": "Git",
+                    "logo": "../assets/Git_icon.svg.png"
+                }
+            ]
+        },
+        {
+            "name": "Computer Graphics",
+            "skills": [
+                {
+                    "name": "UE",
+                    "logo": "../assets/ue5.png"
+                },
+                {
+                    "name": "unity",
+                    "logo": "../assets/unity.png"
+                }
+                ,
+                {
+                    "name": "GLSL",
+                    "logo": "../assets/Glsl.webp"
+                }
+                ,
+                {
+                    "name": "GLM",
+                    "logo": "../assets/Glm.svg"
+                }
+                ,
+                {
+                    "name": "Open GL",
+                    "logo": "../assets/OpenGL.svg"
+                }
+                ,
+                {
+                    "name": "Java FX",
+                    "logo": "../assets/JavaFX.svg"
+                }
+            ]
+        }
+        ,{
+            "name": "Back-end Web",
+            "skills": [
+                {
+                    "name": "Python",
+                    "logo": "../assets/1200px-Python-logo-notext.svg.png"
+                },
+                {
+                    "name": "Flask",
+                    "logo": "../assets/Flask.svg"
+                },
+                {
+                    "name": "Django",
+                    "logo": "../assets/django.png"
+                },
+                {
+                    "name": "JavaScript (JS)",
+                    "logo": "../assets/file_type_js_official_icon_130509.png"
+                },
+                {
+                    "name": "TypeScript (TS)",
+                    "logo": "../assets/TypeScript.svg"
+                },
+                {
+                    "name": "Nodes.JS",
+                    "logo": "../assets/NodeJS.svg"
+                },
+                {
+                    "name": "C#",
+                    "logo": "../assets/cs.png"
+                },
+                {
+                    "name": "SQL",
+                    "logo": "../assets/Sql.svg"
+                }
+                ,
+                {
+                    "name": "Ruby",
+                    "logo": "../assets/Ruby.svg"
+                }
+            ]
+        }
+        ,{
+            "name": "Front-end Web",
+            "skills": [
+                {
+                    "name": "HTML5",
+                    "logo": "../assets/file_type_html_icon_130541.png"
+                },
+                {
+                    "name": "CSS3",
+                    "logo": "../assets/file_type_css_icon_130661.png"
+                },
+                {
+                    "name": "JavaScript (JS)",
+                    "logo": "../assets/file_type_js_official_icon_130509.png"
+                },
+                {
+                    "name": "TypeScript (TS)",
+                    "logo": "../assets/TypeScript.svg"
+                },
+                {
+                    "name": "JQuery",
+                    "logo": "../assets/JQuery.svg"
+                },
+                {
+                    "name": "Bootstrap",
+                    "logo": "../assets/Bootstrap.svg"
+                },
+                {
+                    "name": "Three.JS",
+                    "logo": "../assets/threejs.png"
+                }
+            ]
+        },{
+            "name": "Machine Learning",
+            "skills": [
+                {
+                    "name": "Python",
+                    "logo": "../assets/1200px-Python-logo-notext.svg.png"
+                },
+                {
+                    "name": "PyTorch",
+                    "logo": "../assets/PyTorch.svg"
+                },
+                {
+                    "name": "TensorFlow",
+                    "logo": "../assets/TensorFlow.svg"
+                }
+            ]
+        },{
+            "name": "Design",
+            "skills": [
+                {
+                    "name": "Blender",
+                    "logo": "../assets/blender.png"
+                },
+                {
+                    "name": "3DS Max",
+                    "logo": "../assets/autodesk-3ds-max-small-social-400.png"
+                },
+                {
+                    "name": "Maya",
+                    "logo": "../assets/maya.png"
+                },
+                {
+                    "name": "Figma",
+                    "logo": "../assets/Figma.svg"
+                },
+                {
+                    "name": "Photoshop",
+                    "logo": "../assets/Photoshop.svg"
+                },
+                {
+                    "name": "Illustrator",
+                    "logo": "../assets/Illustrator.svg"
+                },
+                {
+                    "name": "After Effects",
+                    "logo": "../assets/Illustrator.svg"
+                },
+                {
+                    "name": "Premiere Pro",
+                    "logo": "../assets/adobe-premiere-pro-logo-0-1.png"
+                }
+                ,
+                {
+                    "name": "Pro create",
+                    "logo": "../assets/Procreate-icon.png"
+                }
+                ,
+                {
+                    "name": "Fresco",
+                    "logo": "../assets/Adobe_Fresco_CC_2021_Logo.png"
+                }            ]
+        }
+    ]
+}
