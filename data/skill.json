@@ -79,7 +79,8 @@
                 },
                 {
                     "name": "Flask",
-                    "logo": "../assets/Flask.svg"
+                    "logo": "../assets/Flask.svg",
+                    "invert": "100%"
                 },
                 {
                     "name": "Django",
