@@ -113,11 +113,11 @@ document.addEventListener("DOMContentLoaded", () => {
     function read_json(url, callback) {
         let xhr = new XMLHttpRequest();
         xhr.open('GET', url);
-
-        xhr.onreadystatechange = function (data) {
+    
+        xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
-                    let my_data = JSON.parse(data.currentTarget.response);
+                    let my_data = JSON.parse(xhr.responseText);
                     callback(my_data);
                 } else {
                     console.log('Error pJS - XMLHttpRequest status: ' + xhr.status);
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         };
-
+    
         xhr.send();
     }
     skills_events();
