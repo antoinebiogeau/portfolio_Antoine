@@ -17,6 +17,7 @@
     console.log(date.getFullYear());
     target.innerHTML += date.getFullYear();
 });*/
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("loaded");
     function skills_events() {
@@ -115,13 +116,15 @@ document.addEventListener("DOMContentLoaded", () => {
         xhr.open('GET', url);
     
         xhr.onreadystatechange = function () {
+            console.log('readyState:', xhr.readyState);
+            console.log('status:', xhr.status);
+    
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
                     let my_data = JSON.parse(xhr.responseText);
                     callback(my_data);
                 } else {
-                    console.log('Error pJS - XMLHttpRequest status: ' + xhr.status);
-                    console.log('Error pJS - File config not found');
+                    console.log('Error - File not found or server issue');
                 }
             }
         };
