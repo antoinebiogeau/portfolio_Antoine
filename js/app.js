@@ -129,4 +129,51 @@ document.addEventListener("DOMContentLoaded", () => {
         xhr.send();
     }
     skills_events();
+
+    // Fonction pour agrandir une image au clic
+    function agrandirImage(image) {
+        // Créez une div pour l'image agrandie
+        const agrandissementDiv = document.createElement('div');
+        agrandissementDiv.classList.add('agrandissement');
+
+        // Créez une copie de l'image et ajoutez-la à la div
+        const agrandissementImage = document.createElement('img');
+        agrandissementImage.src = image.src;
+        agrandissementImage.alt = image.alt;
+        agrandissementDiv.appendChild(agrandissementImage);
+
+        // Ajoutez un bouton de fermeture à la div
+        const closeButton = document.createElement('button');
+        closeButton.innerText = 'X';
+        closeButton.addEventListener('click', () => {
+            // Retirez la div agrandie lorsque le bouton est cliqué
+            agrandissementDiv.remove();
+        });
+        agrandissementDiv.appendChild(closeButton);
+
+        // Ajoutez un événement de clic à la fenêtre agrandie pour la fermer
+        agrandissementDiv.addEventListener('click', event => {
+            // Vérifiez si l'élément cliqué est la fenêtre agrandie elle-même (pas un enfant)
+            if (event.target === agrandissementDiv) {
+                // Retirez la div agrandie lorsque l'utilisateur clique en dehors de l'image
+                agrandissementDiv.remove();
+            }
+        });
+
+        // Ajoutez la div agrandie au corps du document
+        document.body.appendChild(agrandissementDiv);
+
+        // Ajustez le z-index pour être au-dessus de tous les autres éléments
+        agrandissementDiv.style.zIndex = '10';
+    }
+
+    // Sélectionnez toutes les balises d'image dans la liste
+    const images = document.querySelectorAll('.creation ul li img');
+
+    // Parcourez chaque image et ajoutez un écouteur d'événements pour le clic
+    images.forEach(image => {
+        image.addEventListener('click', () => {
+            agrandirImage(image);
+        });
+    });
 });
