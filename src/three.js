@@ -43,7 +43,7 @@ renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 //helpers
 const lightHelper = new THREE.Mesh(
-    new THREE.SphereGeometry(0.1, 8, 8),
+    new THREE.SphereGeometry(0.5, 8, 8), 
     new THREE.MeshBasicMaterial({ color: 0xffff00 })
 );
 lightHelper.position.copy(directionalLight.position);
@@ -153,10 +153,9 @@ function onMouseDown(event) {
     if (intersects.length > 0) {
         control.attach(intersects[0].object);
         selectedObject = intersects[0].object;
-        console.log(selectedObject);
         objectSelected = true;
-    }
-     else {
+    } else {
+  
     }
 }
 
@@ -189,9 +188,11 @@ window.addEventListener('mousedown', onMouseDown);
 
 function update() {
     requestAnimationFrame(update);
+    
     if (selectedObject === lightHelper) {
         updateLightPosition();
     }
+
     renderer.render(scene, camera);
-  }
+}
   update();
