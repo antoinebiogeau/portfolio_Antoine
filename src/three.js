@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import {FBXLoader} from 'three/examples/jsm/loaders/FBXLoader.js';
+
 
 
 const scene = new THREE.Scene();
@@ -88,7 +90,7 @@ cube2.receiveShadow = true;
 
 plane.receiveShadow = true; 
 
-
+let interactableObjects = [cube, cube2, plane, lightHelper, ambientLight, directionalLight];
 renderer.domElement.addEventListener('mousedown', function(event) {
     if (event.button === 0 && event.altKey) {
         isRotating = true;
@@ -143,12 +145,16 @@ let objectSelected = false;
 
 
 function onMouseDown(event) {
+        if (control.dragging) {
+        // Si le guizmo est en train d'être déplacé, ignorez le reste de la fonction
+        return;
+    }
     objectSelected = false;
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects([cube, cube2, plane, lightHelper, ambientLight, directionalLight]);
+    const intersects = raycaster.intersectObjects(interactableObjects);
 
     if (intersects.length > 0) {
         control.attach(intersects[0].object);
@@ -185,6 +191,28 @@ window.addEventListener('mouseup', onMouseUp);
 
 window.addEventListener('mousedown', onMouseDown);
 
+const fileInput = document.getElementById('fileInput');
+fileInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const url = URL.createObjectURL(file);
+        loadFBX(url);
+    }
+});
+
+function loadFBX(url) {
+    const loader = new FBXLoader();
+    loader.load(url, function(object) {
+        object.position.set(0, 0, 0); // positionnement à 0, 0, 0
+        scene.add(object);
+        //ajout shadow
+        object.castShadow = true;
+        object.receiveShadow = true;
+        interactableObjects.push(object);
+    }, undefined, function(error) {
+        console.error(error);
+    });
+}
 
 function update() {
     requestAnimationFrame(update);
