@@ -31,11 +31,13 @@ controls.enableRotate = false;
 let isRotating = false;
 let initialMousePosition = new THREE.Vector2();
 
+const hoveredMaterial = new THREE.PointsMaterial({ color: 0xffff00, size: 0.1 });
+const defaultMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
 
 //////////////////////////////////// light ////////////////////////////////////
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); 
 scene.add(ambientLight);
-
+const pointsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 }); // Essayez d'augmenter la taille
 // Ajouter une lumière directionnelle
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8); 
 directionalLight.position.set(1, 1, 1); 
@@ -59,6 +61,8 @@ let currentEdges = null;
 let currentPoints = null;
 let edgesVisible = false;
 let pointsVisible = false;
+let selectedVertexIndex = null;
+let isVertexSelected = false;
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -85,7 +89,7 @@ scene.add(plane);
 
 
 
-
+let highlighted = false;
 cube.castShadow = true; 
 cube.receiveShadow = true; 
 
@@ -94,6 +98,35 @@ cube2.receiveShadow = true;
 
 plane.receiveShadow = true; 
 
+scene.add(currentPoints);
+console.log("Points ajoutés à la scène", currentPoints);
+
+
+
+// renderer.domElement.addEventListener('mousemove', function(event) {
+//     // Gérer la rotation
+//     if (isRotating) {
+//         controls.enableRotate = true;
+//     }
+
+//     // Convertir la position de la souris en coordonnées normalisées (-1 à +1)
+//     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+//     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+//     // Mettre à jour le raycaster avec la position de la souris
+//     raycaster.setFromCamera(mouse, camera);
+
+//     // Vérifier les intersections avec les points
+//     if (currentPoints) {
+//         const intersects = raycaster.intersectObject(currentPoints, true);
+//         if (intersects.length > 0) {
+//             selectedVertexIndex = intersects[0].index;
+//             // Logique supplémentaire pour gérer le vertex survolé
+//         } else {
+//             selectedVertexIndex = null;
+//         }
+//     }
+// });
 let interactableObjects = [cube, cube2, plane, lightHelper, ambientLight, directionalLight];
 renderer.domElement.addEventListener('mousedown', function(event) {
     if (event.button === 0 && event.altKey) {
@@ -158,7 +191,10 @@ function onMouseDown(event) {
 
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObjects(interactableObjects);
-
+    if (selectedVertexIndex !== null) {
+        // Si un vertex est sélectionné, définissez un indicateur pour le déplacement
+        isVertexSelected = true;
+    }
     if (intersects.length > 0) {
         control.attach(intersects[0].object);
         selectedObject = intersects[0].object;
@@ -167,6 +203,45 @@ function onMouseDown(event) {
     } else {
   
     }
+}
+function onMouseMove(event) {
+    console.log("MouseMove détecté");
+    
+    // Convertir la position de la souris en coordonnées normalisées (-1 à +1)
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    // Mettre à jour le raycaster avec la position de la souris
+    raycaster.setFromCamera(mouse, camera);
+
+    // Vérifier les intersections avec les points
+    if (currentPoints) {
+        const intersects = raycaster.intersectObjects([currentPoints], true);
+        console.log("Nombre d'intersections : " + intersects.length);
+        if (intersects.length > 0) {
+            if (!highlighted) {
+                console.log("jzaaaaaaauuuuuuunnnneeee");
+                console.log(currentPoints);
+                currentPoints.material = new THREE.PointsMaterial({ color: 0xffff00, size: 2 });
+                currentPoints.geometry.attributes.position.needsUpdate = true;
+                currentPoints.material.needsUpdate = true;
+                highlighted = true;
+                renderer.render(scene, camera);
+            }
+        } else {
+            if (highlighted) {
+                console.log("blaaaaaannnnncccc");
+                console.log(currentPoints);
+
+                currentPoints.material = new THREE.PointsMaterial({ color: 0xffffff, size: 2 });
+                currentPoints.geometry.attributes.position.needsUpdate = true;
+                currentPoints.material.needsUpdate = true;
+                highlighted = false;
+                renderer.render(scene, camera);
+            }
+        }
+    }
+    
 }
 
 function onMouseUp(event) {
@@ -191,6 +266,7 @@ document.getElementById('colorPicker').addEventListener('input', function (event
 
 window.addEventListener('mousedown', onMouseDown);
 window.addEventListener('mouseup', onMouseUp);
+window.addEventListener('mousemove', onMouseMove);
 
 
 window.addEventListener('mousedown', onMouseDown);
@@ -260,8 +336,10 @@ function updateEdgeAndPointRepresentations() {
     currentPoints = createPointRepresentation(selectedObject);
     currentEdges.visible = edgesVisible;
     currentPoints.visible = pointsVisible;
+    highlighted = false;
     scene.add(currentEdges);
     scene.add(currentPoints);
+    
 }
 
 document.getElementById('toggleEdges').addEventListener('click', function () {
@@ -284,7 +362,7 @@ function update() {
     if (selectedObject === lightHelper) {
         updateLightPosition();
     }
-
+    highlighted = false;
     renderer.render(scene, camera);
 }
   update();
