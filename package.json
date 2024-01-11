@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "babel --no-babelrc src -w -d js --preset=env"
+    "build": "babel --no-babelrc src -w -d js --preset=env",
+    "production": ""
   },
   "author": "",
   "license": "ISC",
@@ -174,6 +175,7 @@
     "ms": "^2.0.0",
     "nanomatch": "^1.2.13",
     "normalize-path": "^2.1.1",
+    "npx": "^10.2.2",
     "object-assign": "^4.1.1",
     "object-copy": "^0.1.0",
     "object-visit": "^1.0.1",

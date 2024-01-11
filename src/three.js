@@ -55,7 +55,10 @@ function updateLightPosition() {
     directionalLight.position.copy(lightHelper.position);
 }
 
-
+let currentEdges = null;
+let currentPoints = null;
+let edgesVisible = false;
+let pointsVisible = false;
 
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -79,6 +82,7 @@ const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00, side: TH
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = Math.PI / 2;
 scene.add(plane);
+
 
 
 
@@ -146,7 +150,6 @@ let objectSelected = false;
 
 function onMouseDown(event) {
         if (control.dragging) {
-        // Si le guizmo est en train d'être déplacé, ignorez le reste de la fonction
         return;
     }
     objectSelected = false;
@@ -160,6 +163,7 @@ function onMouseDown(event) {
         control.attach(intersects[0].object);
         selectedObject = intersects[0].object;
         objectSelected = true;
+        updateEdgeAndPointRepresentations(selectedObject);
     } else {
   
     }
@@ -203,7 +207,7 @@ fileInput.addEventListener('change', function(event) {
 function loadFBX(url) {
     const loader = new FBXLoader();
     loader.load(url, function(object) {
-        object.position.set(0, 0, 0); // positionnement à 0, 0, 0
+        object.position.set(0, 0, 0);
         scene.add(object);
         //ajout shadow
         object.castShadow = true;
@@ -214,9 +218,69 @@ function loadFBX(url) {
     });
 }
 
+
+
+
+function createEdgeRepresentation(mesh) {
+    const edges = new THREE.EdgesGeometry(mesh.geometry);
+    const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0xffffff }));
+    line.position.copy(mesh.position);
+    line.rotation.copy(mesh.rotation);
+    line.scale.copy(mesh.scale);
+
+    return line;
+}
+
+function createPointRepresentation(mesh) {
+    if (!(mesh.geometry instanceof THREE.BufferGeometry)) {
+        console.error('La géométrie n\'est pas une instance de THREE.BufferGeometry.');
+        return;
+    }
+
+    const positionAttribute = mesh.geometry.getAttribute('position');
+    const points = [];
+    for (let i = 0; i < positionAttribute.count; i++) {
+        points.push(new THREE.Vector3().fromBufferAttribute(positionAttribute, i));
+    }
+
+    const pointsGeometry = new THREE.BufferGeometry().setFromPoints(points);
+    const pointsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.1 });
+    const pointsMesh = new THREE.Points(pointsGeometry, pointsMaterial);
+    pointsMesh.position.copy(mesh.position);
+    pointsMesh.rotation.copy(mesh.rotation);
+    pointsMesh.scale.copy(mesh.scale);
+
+    return pointsMesh;
+}
+function updateEdgeAndPointRepresentations() {
+    if (!selectedObject) return;
+    if (currentEdges) scene.remove(currentEdges);
+    if (currentPoints) scene.remove(currentPoints);
+    currentEdges = createEdgeRepresentation(selectedObject);
+    currentPoints = createPointRepresentation(selectedObject);
+    currentEdges.visible = edgesVisible;
+    currentPoints.visible = pointsVisible;
+    scene.add(currentEdges);
+    scene.add(currentPoints);
+}
+
+document.getElementById('toggleEdges').addEventListener('click', function () {
+    edgesVisible = !edgesVisible;
+    if (currentEdges) {
+        currentEdges.visible = edgesVisible;
+    }
+});
+
+document.getElementById('togglePoints').addEventListener('click', function () {
+    pointsVisible = !pointsVisible;
+    if (currentPoints) {
+        currentPoints.visible = pointsVisible;
+    }
+});
+
 function update() {
     requestAnimationFrame(update);
-    
+    updateEdgeAndPointRepresentations();
     if (selectedObject === lightHelper) {
         updateLightPosition();
     }
