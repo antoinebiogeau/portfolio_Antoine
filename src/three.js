@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import {FBXLoader} from 'three/examples/jsm/loaders/FBXLoader.js';
+import {GLTFExporter} from 'three/examples/jsm/exporters/GLTFExporter.js';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 
 
@@ -169,7 +171,9 @@ document.getElementById('rotate').addEventListener('click', function () {
 document.getElementById('scale').addEventListener('click', function () {
     control.setMode('scale');
 });
-
+document.getElementById('saveScene').addEventListener('click', function () {
+    saveScene();
+});
 camera.position.z = 5;
 
 
@@ -275,8 +279,17 @@ const fileInput = document.getElementById('fileInput');
 fileInput.addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
-        const url = URL.createObjectURL(file);
-        loadFBX(url);
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const contents = event.target.result;
+            const json = JSON.parse(contents);
+            const loader = new THREE.ObjectLoader();
+            const loadedScene = loader.parse(json);
+            scene = loadedScene;
+            updateInteractableObjects();
+            // Autres mises à jour nécessaires après le chargement de la scène
+        };
+        reader.readAsText(file);
     }
 });
 
@@ -356,6 +369,98 @@ document.getElementById('togglePoints').addEventListener('click', function () {
     }
 });
 
+function saveScene() {
+    // const sceneJson = scene.toJSON();
+    // const stringifiedScene = JSON.stringify(sceneJson);
+    // // À ce stade, `stringifiedScene` est une chaîne que vous pouvez enregistrer dans un fichier
+    // download(stringifiedScene, 'scene.json', 'application/json');
+    const exporter = new GLTFExporter();
+
+    exporter.parse(scene, function (gltf) {
+        download(JSON.stringify(gltf), 'scene.gltf', 'text/plain');
+    });
+}
+
+fileInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const contents = event.target.result;
+            const json = JSON.parse(contents);
+            const loader = new THREE.ObjectLoader();
+            const loadedScene = loader.parse(json);
+            // Remplacer l'ancienne scène par la nouvelle
+            scene = loadedScene;
+            // Mise à jour de la liste des objets interactifs, si nécessaire
+            updateInteractableObjects();
+        };
+        reader.readAsText(file);
+    }
+});
+
+function updateInteractableObjects() {
+    interactableObjects = [];
+    scene.traverse(function (object) {
+        if (object.isMesh) {
+            interactableObjects.push(object);
+        }
+    });
+}
+
+function download(content, fileName, contentType) {
+    // var a = document.createElement("a");
+    // var file = new Blob([content], {type: contentType});
+    // a.href = URL.createObjectURL(file);
+    // a.download = fileName;
+    // a.click();
+    var a = document.createElement("a");
+    var file = new Blob([content], {type: contentType});
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+}
+document.getElementById('dropZone').addEventListener('drop', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    if (file) {
+        clearScene(); // Effacer la scène avant de charger un nouveau fichier
+        const url = URL.createObjectURL(file);
+        loadGLTF(url); // Charger le fichier GLTF
+    }
+});
+
+function clearScene() {
+    while(scene.children.length > 0){ 
+        scene.remove(scene.children[0]); 
+    }
+}
+
+function loadGLTF(url) {
+    const loader = new GLTFLoader();
+    loader.load(url, function(gltf) {
+        scene.add(gltf.scene);
+        updateInteractableObjects2();
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+// Lumière directionnelle
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+directionalLight.position.set(5, 5, 5);
+scene.add(directionalLight);
+    }, undefined, function(error) {
+        console.error('Erreur lors du chargement du fichier GLTF:', error);
+    });
+}
+function updateInteractableObjects2() {
+    interactableObjects = [];
+    scene.traverse(function (object) {
+        if (object.isMesh) {
+            interactableObjects.push(object);
+        }
+    });
+}
 function update() {
     requestAnimationFrame(update);
     updateEdgeAndPointRepresentations();
