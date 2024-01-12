@@ -430,7 +430,8 @@ main section:nth-child(5) ul li img {
     display: block;
     width: 100%;
     object-fit: cover;
-    max-height: 34rem;
+    max-height: 25rem;
+    height: auto;
     border-radius: 1.25rem;
     cursor: pointer;
     margin: 1rem auto;
@@ -729,45 +730,73 @@ a:visited {
 
         #skills_section .box .box_content {
             width: calc(100% - 50px);
-            padding: 40px 25px 40px 25px;
+            padding: 0px 25px 0px 25px;
+        }
+
+        #skills_section .box .box_content:last-child {
+            padding: 0px 25px 40px 25px;
+
+        }
+
+        @media screen and (max-width: 465px) {
+            #skills_section .box .box_content .skills_list {
+                justify-content: space-around;
+            }
         }
     }
 
-    @media screen and (max-width: 465px) {
-        #skills_section .box .box_content .skills_list {
-            justify-content: space-around;
+
+    @media screen and (max-width: 60rem) {
+        header {
+            height: 90vh;
+
         }
-    }
-}
 
+        #skills_section .box .category_title:first-child {
+            margin-top: 5rem;
+        }
 
-@media screen and (max-width: 60rem) {
-    header h1 {
-        top: 15%;
-    }
+        #skills_section .box .category_title {
+            margin: 0;
+        }
 
-    main section {
-        padding: 1rem;
-    }
+        header h1 {
+            top: 15%;
+            font-size: 4rem;
+        }
 
-    main section h2 {
-        font-size: 14vw;
-    }
+        main section {
+            padding: 1rem;
+        }
 
-    main section:nth-child(4) ul,
-    main section:nth-child(5) ul {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(1, 1fr);
-    }
+        main section h2 {
+            font-size: 14vw;
+        }
 
-    footer {
-        padding: 1rem;
-    }
+        main section:nth-child(4) ul,
+        main section:nth-child(5) ul {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(1, 1fr);
+        }
 
-    footer address ul {
-        padding: 0rem;
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
+        main section:nth-child(5) ul li img {
+            max-height: 17rem;
+        }
+
+        main section:nth-child(4) ul li {
+            max-width: 36rem;
+            min-width: inherit;
+        }
+
+        footer {
+            padding: 1rem;
+        }
+
+        footer address ul {
+            padding: 0rem;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 }
