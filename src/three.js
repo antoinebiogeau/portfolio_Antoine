@@ -279,19 +279,11 @@ const fileInput = document.getElementById('fileInput');
 fileInput.addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            const contents = event.target.result;
-            const json = JSON.parse(contents);
-            const loader = new THREE.ObjectLoader();
-            const loadedScene = loader.parse(json);
-            scene = loadedScene;
-            updateInteractableObjects();
-            // Autres mises à jour nécessaires après le chargement de la scène
-        };
-        reader.readAsText(file);
+        const url = URL.createObjectURL(file);
+        loadFBX(url);
     }
 });
+
 
 function loadFBX(url) {
     const loader = new FBXLoader();
@@ -374,11 +366,19 @@ function saveScene() {
     // const stringifiedScene = JSON.stringify(sceneJson);
     // // À ce stade, `stringifiedScene` est une chaîne que vous pouvez enregistrer dans un fichier
     // download(stringifiedScene, 'scene.json', 'application/json');
-    const exporter = new GLTFExporter();
 
-    exporter.parse(scene, function (gltf) {
-        download(JSON.stringify(gltf), 'scene.gltf', 'text/plain');
-    });
+    //gltf
+    // const exporter = new GLTFExporter();
+
+    // exporter.parse(scene, function (gltf) {
+    //     download(JSON.stringify(gltf), 'scene.gltf', 'text/plain');
+    // });
+    //json
+        const sceneJson = scene.toJSON();
+        const stringifiedScene = JSON.stringify(sceneJson);
+        download(stringifiedScene, 'scene.json', 'application/json');
+
+    
 }
 
 fileInput.addEventListener('change', function(event) {
@@ -409,16 +409,16 @@ function updateInteractableObjects() {
 }
 
 function download(content, fileName, contentType) {
+    const a = document.createElement("a");
+    const file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
     // var a = document.createElement("a");
     // var file = new Blob([content], {type: contentType});
     // a.href = URL.createObjectURL(file);
     // a.download = fileName;
     // a.click();
-    var a = document.createElement("a");
-    var file = new Blob([content], {type: contentType});
-    a.href = URL.createObjectURL(file);
-    a.download = fileName;
-    a.click();
 }
 document.getElementById('dropZone').addEventListener('drop', function(event) {
     event.stopPropagation();
@@ -427,7 +427,7 @@ document.getElementById('dropZone').addEventListener('drop', function(event) {
     if (file) {
         clearScene(); // Effacer la scène avant de charger un nouveau fichier
         const url = URL.createObjectURL(file);
-        loadGLTF(url); // Charger le fichier GLTF
+        jsonloadr(event); // Charger le fichier GLTF
     }
 });
 
@@ -437,29 +437,22 @@ function clearScene() {
     }
 }
 
-function loadGLTF(url) {
-    const loader = new GLTFLoader();
-    loader.load(url, function(gltf) {
-        scene.add(gltf.scene);
-        updateInteractableObjects2();
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-scene.add(ambientLight);
+function jsonloadr(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const contents = event.target.result;
+            const json = JSON.parse(contents);
+            const loader = new THREE.ObjectLoader();
 
-// Lumière directionnelle
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-directionalLight.position.set(5, 5, 5);
-scene.add(directionalLight);
-    }, undefined, function(error) {
-        console.error('Erreur lors du chargement du fichier GLTF:', error);
-    });
-}
-function updateInteractableObjects2() {
-    interactableObjects = [];
-    scene.traverse(function (object) {
-        if (object.isMesh) {
-            interactableObjects.push(object);
-        }
-    });
+            clearScene(); // Effacez la scène actuelle avant de charger la nouvelle
+            scene = loader.parse(json);
+            updateInteractableObjects(); // Mettre à jour les objets interactifs
+        };
+        reader.readAsText(file);
+    }
+
 }
 function update() {
     requestAnimationFrame(update);
